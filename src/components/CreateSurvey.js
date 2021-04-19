@@ -25,13 +25,14 @@ const CreateSurvey = ({ squestions, setSquestions }) => {
         setOptions(updatedOption);
     }
 
-    const deleteOptions = () => {
+    const deleteOptions = (id) => {
         if (options.length === 2) {
             alert("Error : A select type should have atleast 2 options");
         } else {
             let updatedOptions = [...options];
-            updatedOptions.pop();
-            setOptions(updatedOptions);
+            // console.log(id);
+            let updates=updatedOptions.filter((item) => item.uid !== id);
+            setOptions(updates);
         }
     }
  
@@ -71,6 +72,7 @@ const CreateSurvey = ({ squestions, setSquestions }) => {
                         <>
                             <Options
                                 key={key}
+                                val={opt}
                                 uid={opt.uid}
                                 addOption={addOption}
                                 deleteOptions={deleteOptions}
